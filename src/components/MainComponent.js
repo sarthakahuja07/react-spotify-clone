@@ -10,11 +10,11 @@ function Main() {
     useEffect(() => {
         const hash = getTokenFromResponse();
         let _token = hash.access_token;
-        if(token==null){
+        if (token == null) {
             dispatch(set_token(_token))
         }
         window.location.hash = "";
-    }, [dispatch])
+    }, [dispatch, token])
     return (
         token ?
             <div>loggedIN</div>
