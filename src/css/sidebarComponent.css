@@ -1,0 +1,16 @@
+.sidebar-container{
+    height: 100vh;
+    font-size: 0.2;
+    background: #040404;
+    color: white;
+    min-width: 230px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.sidebar__logo{
+    padding: 10px;
+    padding-top: 24px;
+    margin-right: auto;
+    height: 40px;
+}

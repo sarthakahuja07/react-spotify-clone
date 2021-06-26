@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import Login from './LoginComponent';
 import { useSelector, useDispatch } from 'react-redux';
 import { getTokenFromResponse } from '../spotify';
-import { set_token, set_spotifyAPI } from '../redux/Action_creator';
+import { set_token} from '../redux/Action_creator';
 import SpotifyWebApi from 'spotify-web-api-js';
 import Spotify from './SpotifyComponent';
 
