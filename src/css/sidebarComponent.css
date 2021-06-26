@@ -1,16 +1,31 @@
-.sidebar-container{
-    height: 100vh;
-    font-size: 0.2;
-    background: #040404;
-    color: white;
-    min-width: 230px;
-    padding-left: 10px;
-    padding-right: 10px;
+.sidebar-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  flex: 0.2;
+  background: #040404;
+  color: white;
+  min-width: 230px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
-.sidebar__logo{
-    padding: 10px;
-    padding-top: 24px;
-    margin-right: auto;
-    height: 40px;
+.sidebar__logo {
+  object-fit: contain;
+  padding: 10px;
+  padding-top: 24px;
+  margin-right: auto;
+  height: 40px;
+}
+
+.sidebar__title {
+  margin-left: 10px;
+  padding: 5px;
+  font-size: 12px;
+}
+
+.sidebar-container hr {
+  border: 1px solid #282828;
+  width: 90%;
+  margin: 10px auto;
 }
