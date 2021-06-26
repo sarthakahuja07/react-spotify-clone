@@ -1,8 +1,9 @@
 .footer-container {
   position: fixed;
   bottom: 0;
-  height: 7vh;
-  width: 97%;
+  width: 100%;
+  box-sizing: border-box;
+  height: 15vh;
   background: #282828;
   padding: 20px;
   display: flex;

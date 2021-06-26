@@ -1,8 +1,11 @@
 .sidebar-container {
+  box-sizing: border-box;
   flex: 0.2;
-  height: 93vh !important;
+  height: 85vh;
   padding-left: 10px;
   padding-right: 10px;
+  padding-top: 30px;
+  padding-bottom: 30px;
   min-width: 230px;
   overflow-y: overlay;
   color: white;
