@@ -16,6 +16,7 @@
   align-items: center;
   color: white;
   max-width: 300px;
+  min-width: 300px;
 }
 
 .footer__center {
@@ -55,11 +56,13 @@
   color: #1ed15e;
 }
 
-.footer__right * .MuiSlider-root {
+.footer__right .MuiSlider-root {
   color: #1ed15e;
+
 }
 
 .footer__icon:hover{
   transition: transform 0.1s ease-in-out;
   transform: scale(1.1) !important;
 }
+ 

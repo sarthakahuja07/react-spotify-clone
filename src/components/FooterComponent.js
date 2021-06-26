@@ -28,7 +28,7 @@ function Footer() {
 
             </div>
             <div className="footer__right">
-                <Grid container spacing={2}>
+                {/* <Grid container spacing={1}>
                     <Grid item>
                         <PlaylistPlayIcon className="footer__icon"/>
                     </Grid>
@@ -38,7 +38,11 @@ function Footer() {
                     <Grid item xs>
                         <Slider aria-labelledby="continuous-slider" />
                     </Grid>
-                </Grid>
+                </Grid> */}
+                <PlaylistPlayIcon className="footer__icon" />
+                <VolumeDownIcon className="footer__icon" />
+                <Slider aria-labelledby="continuous-slider" />
+
             </div>
         </div>
     )
