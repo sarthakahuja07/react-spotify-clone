@@ -1,0 +1,22 @@
+.login-container{
+    display: grid;
+    place-items: center;
+    height: 100vh;
+    background: black;
+}
+.login__logo{
+    width: 80%;
+}
+
+.login__button.MuiButton-contained {
+    padding: 20px;
+    background: #1db954;
+    color: white;
+    border-radius: 99px;
+    font-weight: 800;
+}
+
+.login__button.MuiButton-contained:hover {
+    background: #1db954;
+    opacity:0.9;
+}
