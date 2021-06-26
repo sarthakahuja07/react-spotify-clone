@@ -1,13 +1,12 @@
 .sidebar-container {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
   flex: 0.2;
-  background: #040404;
-  color: white;
-  min-width: 230px;
+  height: 100vh !important;
   padding-left: 10px;
   padding-right: 10px;
+  min-width: 230px;
+  overflow-y: overlay;
+  color: white;
+  background-color: #040404;
 }
 
 .sidebar__logo {
@@ -16,6 +15,7 @@
   padding-top: 24px;
   margin-right: auto;
   height: 40px;
+  margin-bottom: 10px;
 }
 
 .sidebar__title {

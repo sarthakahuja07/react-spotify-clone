@@ -1,0 +1,22 @@
+.sidebarOption-container{
+    color: grey;
+    height: 40px;
+    cursor: pointer;
+    transition:200ms color ease-in;
+    display: flex;
+    align-items: center;
+}
+.sidebarOption-container:hover{
+    color: white;
+}
+
+.MuiSvgIcon-root{
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.sidebarOption-container>p{
+    margin-top: 10px;
+    margin-left: 20px;
+    font-size: 14px;
+}

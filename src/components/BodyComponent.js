@@ -13,8 +13,9 @@ function Body() {
                     <h2>Discover Weekly</h2>
                     <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fugiat voluptate deserunt quidem odio similique mollitia numquam consequatur ad, reprehenderit iusto modi omnis. At odit repellat possimus vitae minus quo omnis.</p>
                 </div>
-                <Songs/>
+                
             </div>
+            <Songs/>
         </div>
     )
 }
