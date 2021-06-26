@@ -1,16 +1,27 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Login from './LoginComponent';
-import {useSelector} from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { getTokenFromResponse } from '../spotify';
+import { set_token } from '../redux/Action_creator';
 
 function Main() {
+    const token = useSelector((state) => state.token);
+    const dispatch = useDispatch();
+    useEffect(() => {
+        const hash = getTokenFromResponse();
+        let _token = hash.access_token;
+        if(token==null){
+            dispatch(set_token(_token))
+        }
+        window.location.hash = "";
+    }, [dispatch])
     return (
-        useSelector((state) => state.token)?
-        <div>hi</div>
-        :
-        <div>
-            <Login/>
-        </div>
+        token ?
+            <div>loggedIN</div>
+            :
+            <div>
+                <Login />
+            </div>
     )
 }
-
 export default Main
