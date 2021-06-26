@@ -1,7 +1,7 @@
 .login-container{
     display: grid;
     place-items: center;
-    height: 100%;
+    min-height: 100vh;
     background: black;
 }
 .login__logo{
@@ -19,4 +19,15 @@
 .login__button.MuiButton-contained:hover {
     background: #1db954;
     opacity:0.9;
+}
+
+.loading-container{
+    display: grid;
+    place-items: center;
+    background: black;
+    height: 100vh;
+}
+
+.loading-container .spinner{
+    color: #1db954;
 }
