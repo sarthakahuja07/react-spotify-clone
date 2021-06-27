@@ -34,3 +34,9 @@
 .header__right >h4{
     margin-left: 10px;
 }
+
+.header__center{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
