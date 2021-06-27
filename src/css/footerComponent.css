@@ -3,11 +3,12 @@
   bottom: 0;
   width: 100%;
   box-sizing: border-box;
-  height: 15vh;
-  background: #282828;
+  height: 14vh;
+  background: hsla(0, 0%, 9%, 1);
   padding: 20px;
   display: flex;
   justify-content: space-between;
+  border-top: 1px solid #282828;
 }
 
 .footer__left {

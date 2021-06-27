@@ -1,5 +1,5 @@
 :root {
-  --bgcolor: black;
+  --bgcolor: #1db954;
   --blur: 4px;
   --color: yellow;
 }
@@ -7,7 +7,7 @@
 .body-container {
   box-sizing: border-box;
   flex: 1;
-  height: 85vh;
+  height:86vh;
   color: white;
   overflow-y: overlay;
   background-color: hsla(0, 1%, 7%, 1);
@@ -24,7 +24,6 @@
     var(--bgcolor) 0.86%,
     hsla(0, 1%, 7%, 1) 99.11%
   );
-
   padding: 30px;
   padding-bottom: 0;
 }
@@ -64,6 +63,7 @@
 .songs__icons {
   display: flex;
   align-items: center;
+
 }
 
 .songs__icons .MuiSvgIcon-root {
