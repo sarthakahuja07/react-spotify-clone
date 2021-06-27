@@ -6,7 +6,7 @@
 
 .body-container {
   box-sizing: border-box;
-  flex: 0.8;
+  flex: 1;
   height: 85vh;
   color: white;
   overflow-y: overlay;
