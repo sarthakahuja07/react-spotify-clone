@@ -28,7 +28,7 @@ function Sidebar() {
 
             <div className="sidebar__list">
 
-                <SidebarOption title="1" />
+                <SidebarOption title="playlist 1" />
                 <SidebarOption title="2" />
                 <SidebarOption title="3" />
                 <SidebarOption title="4" />

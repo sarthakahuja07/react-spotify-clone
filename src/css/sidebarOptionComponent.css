@@ -1,13 +1,13 @@
 .sidebarOption-container{
-    color: grey;
+    color: #b3b3b3;
     height: 40px;
     cursor: pointer;
-    transition:200ms color ease-in;
+    transition:100ms color ease-in;
     display: flex;
-    align-items: flex-start;
+    align-items: center;
 }
 .sidebarOption-container:hover{
-    color: white;
+    color: #fff;
 }
 
 .MuiSvgIcon-root{
@@ -15,8 +15,24 @@
     padding-right: 10px;
 }
 
-.sidebarOption-container>p{
+.sidebarOption-container p{
     margin-top: 10px;
     margin-left: 20px;
     font-size: 14px;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: normal;
+    line-height: 20px;
+    text-transform: capitalize;
 }
+.sidebarOption-container>h4{
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: normal;
+    line-height: 16px;
+    text-transform: none
+}
+.sidebarOption__playlistName {
+    align-self: flex-start;
+}
+

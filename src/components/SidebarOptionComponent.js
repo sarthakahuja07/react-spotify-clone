@@ -10,7 +10,9 @@ function SidebarOption(props) {
 
             {props.Icon ?
                 <h4>{props.title}</h4> :
-                <p>{props.title}</p>
+                <div className="sidebarOption__playlistName">
+                    <p>{props.title}</p>
+                </div>
             }
         </div>
     )
