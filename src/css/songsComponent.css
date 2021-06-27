@@ -67,7 +67,7 @@
 }
 
 .songs-container hr {
-  border: 1px solid #282828;
+  border: 1px solid hsla(0,0%,100%,.1);
 }
 
 .songs-container .hr-container {

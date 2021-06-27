@@ -2,20 +2,32 @@ import React from 'react'
 import '../css/bodyComponent.css';
 import Header from './HeaderComponent';
 import Songs from './SongsComponent';
+// import RGBaster from 'rgbaster';
+import analyze from 'rgbaster'
+
+
 function Body() {
+    var img = 'https://seed-mix-image.spotifycdn.com/v6/img/artist/6AgTAQt8XS6jRWi4sX7w49/en/large'
+    function getColor(){
+        var r = document.querySelector(':root');
+        analyze(img)
+            .then(result => r.style.setProperty('--bgcolor', result[0].color))
+    }
+    
     return (
         <div className="body-container">
             <Header />
             <div className="body__info">
-                <img className="body__info__img" src="https://i.scdn.co/image/ab67706f000000036bdff7dc0e53fe6ca17749b5" alt="" />
+                <img className="body__info__img" src={img} alt="" />
+                {getColor()}
                 <div className="body__info__text">
                     <strong>Playlist</strong>
                     <h2>Viral Hits</h2>
                     <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fugiat voluptate deserunt quidem odio similique mollitia numquam consequatur ad, reprehenderit iusto modi omnis. At odit repellat possimus vitae minus quo omnis.</p>
                 </div>
-                
+
             </div>
-            <Songs/>
+            <Songs />
         </div>
     )
 }
