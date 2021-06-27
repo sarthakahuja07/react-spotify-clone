@@ -13,7 +13,9 @@ function Songs() {
                 <FavoriteIcon fontSize="large" />
                 <MoreHorizIcon style={{color:'white'}}/>
             </div>
-        
+            <div className="hr-container">
+            <hr></hr>
+            </div>
         <div className="songs__list">
             {/* list of song rows */}
             <SongRow/>

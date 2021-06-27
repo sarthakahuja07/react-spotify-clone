@@ -1,55 +1,75 @@
-.songs-container{
-    margin: 20 -30;
+.songs-container {
+  margin: 20 -30;
 }
 .body__shuffle {
-    font-size: 80px !important;
-    margin-left: 20px;
-    margin-top: 20px;
-    margin-bottom: 20px;
-  }
-
-  .songs__icons{
-      display: flex;
-      align-items: center;
-  }
-
-  .songs__icons .MuiSvgIcon-root{
-      margin-right: 10px;
-      color: #1db954;
-    }
-
-  .body__shuffle:hover {
-    transform: scale(1.08);
-    transition: 100ms transform ease-in;
+  font-size: 80px !important;
+  margin-left: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
-.songRow-container{
-    margin-left: 20px;
-    padding: 20px;
-    display: flex;
-    align-items: center;
-    color: white;
+.songs__icons {
+  display: flex;
+  align-items: center;
 }
 
-.songRow-container:hover{
-    cursor: pointer;
-    background: black;
-    opacity: 0.8;
+.songs__icons .MuiSvgIcon-root {
+  margin-right: 10px;
+  color: #1db954;
+}
+
+.body__shuffle:hover {
+  transform: scale(1.08);
+  transition: 100ms transform ease-in;
+}
+
+.songRow-container {
+  border-radius: 4px;
+  margin-left: 20px;
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  color: white;
+}
+
+.songRow-container:hover {
+  cursor: pointer;
+  background-color: hsla(0, 0%, 100%, 0.1);
 }
 .songRow__info {
-    margin-left: 20px;
-  }
-  .songRow__info > h1 {
-    font-size: 16px;
-  }
+  margin-left: 20px;
+}
+.songRow__info > h1 {
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: normal;
+  line-height: 24px;
+  text-transform: none;
+}
 
-  .songRow__info > p {
-    font-size: 14px;
-    margin-top: 3px;
-    color: gray;
-  }
+.songRow__info > p {
+  font-size: 14px;
+  margin-top: 3px;
+  color: gray;
+  font-weight: 400;
+  letter-spacing: normal;
+  line-height: 16px;
+  text-transform: none;
+}
 
-  .songRow__album {
-    height: 40px;
-    width: 40px;
-  }
+.songRow__album {
+  height: 40px;
+  width: 40px;
+}
+
+.songRow-container:hover .songRow__info > p {
+  color: white;
+}
+
+.songs-container hr {
+  border: 1px solid #282828;
+}
+
+.songs-container .hr-container {
+  padding: 10px;
+}
