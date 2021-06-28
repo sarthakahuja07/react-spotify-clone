@@ -4,6 +4,7 @@
   width: 100%;
   box-sizing: border-box;
   height: 14vh;
+  min-height: 70px;
   background: hsla(0, 0%, 9%, 1);
   padding: 20px;
   display: flex;

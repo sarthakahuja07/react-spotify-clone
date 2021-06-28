@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import Login from './LoginComponent';
 import { useSelector, useDispatch } from 'react-redux';
 import { getTokenFromResponse } from '../spotify';
-import { set_token} from '../redux/Action_creator';
+import { set_token, set_user } from '../redux/Action_creator';
 import SpotifyWebApi from 'spotify-web-api-js';
 import Spotify from './SpotifyComponent';
 
@@ -17,15 +17,20 @@ function Main() {
         if (token == null) {
             dispatch(set_token(_token))
         }
-        if (token != null) {
-            const _spotifyApi = new SpotifyWebApi();
-            _spotifyApi.setAccessToken(token);
-            console.log(_spotifyApi);
-        }
 
+        const _spotifyApi = new SpotifyWebApi();
+        _spotifyApi.setAccessToken(token);
+        console.log(_spotifyApi);
         window.location.hash = "";
 
-        // TODO: do suff with spotifywebapi
+        //Saving user //
+        _spotifyApi.getMe()
+            .then(user => {
+                // console.log(user);
+                dispatch(set_user(JSON.stringify(user)))
+            })
+            .catch(err => console.log(err))
+
 
 
     }, [dispatch, token])
