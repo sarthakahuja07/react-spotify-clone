@@ -1,7 +1,9 @@
 import * as ActionTypes from './Action_types';
 const initialState = {
     token: null,
-    user: null
+    user: null,
+    playlists: [],
+    curr_playlist: null
 }
 
 export const reducer = (state = initialState, action) => {
@@ -18,6 +20,20 @@ export const reducer = (state = initialState, action) => {
                 return {
                     ...state,
                     user: action.payload.user
+                }
+            }
+        case ActionTypes.SET_USER_PLAYLISTS:
+            {
+                return {
+                    ...state,
+                    playlists: action.payload.playlists
+                }
+            }
+        case ActionTypes.SET_CURR_PAYLIST:
+            {
+                return {
+                    ...state,
+                    curr_playlist: action.payload.curr_playlist
                 }
             }
         default:

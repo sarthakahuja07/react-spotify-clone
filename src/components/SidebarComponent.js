@@ -6,7 +6,12 @@ import LibraryAddIcon from '@material-ui/icons/LibraryAdd';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import HomeOutlinedIcon from '@material-ui/icons/HomeOutlined';
 import LibraryMusicOutlinedIcon from '@material-ui/icons/LibraryMusicOutlined';
+import { useSelector } from 'react-redux';
+
+
+
 function Sidebar() {
+    const playlists = useSelector(state => state.playlists)
 
     return (
         <div className="sidebar-container">
@@ -28,15 +33,9 @@ function Sidebar() {
 
             <div className="sidebar__list">
 
-                <SidebarOption title="playlist 1" />
-                <SidebarOption title="2" />
-                <SidebarOption title="3" />
-                <SidebarOption title="4" />
-                <SidebarOption title="5" />
-                <SidebarOption title="6" />
-                <SidebarOption title="7" />
-                <SidebarOption title="8" />
-                <SidebarOption title="9" />
+                {
+                    playlists?.map(playlist => <SidebarOption key={playlist.id} playlist={playlist} title={playlist.name} />)
+                }
             </div>
 
 

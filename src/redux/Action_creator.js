@@ -18,3 +18,20 @@ export const set_user = (_user) => {
         }
     }
 }
+export const set_user_playlists = (_playlists) => {
+    return {
+        type: ActionTypes.SET_USER_PLAYLISTS,
+        payload: {
+            playlists: _playlists
+        }
+    }
+}
+
+export const set_curr_playlist = (_playlist) => {
+    return {
+        type: ActionTypes.SET_CURR_PAYLIST,
+        payload: {
+            curr_playlist: _playlist
+        }
+    }
+}
