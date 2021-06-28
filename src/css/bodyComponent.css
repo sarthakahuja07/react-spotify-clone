@@ -7,7 +7,7 @@
 .body-container {
   box-sizing: border-box;
   flex: 1;
-  height:86vh;
+  height: 86vh;
   color: white;
   overflow-y: overlay;
   background-color: hsla(0, 1%, 7%, 1);
@@ -63,7 +63,6 @@
 .songs__icons {
   display: flex;
   align-items: center;
-
 }
 
 .songs__icons .MuiSvgIcon-root {
@@ -71,11 +70,12 @@
   color: #1db954;
 }
 .body__shuffle {
-  font-size: 80px !important;
   margin-top: 20px;
   margin-bottom: 20px;
 }
-
+.body__shuffle.MuiSvgIcon-root {
+  font-size: 80px;
+}
 
 .body__shuffle:hover {
   transform: scale(1.08);
@@ -93,7 +93,27 @@
     font-size: 40px;
     margin-bottom: 10px;
   }
-  .body__info__text > p{
+  .body__info__text > p {
     display: none;
   }
+}
+
+.songs__icons-fixed {
+  background: linear-gradient(
+    180deg,
+    var(--bgcolor) 0.86%,
+    hsla(0, 1%, 7%, 1) 99.11%
+  );
+  position: fixed;
+  top: 0;
+  padding: 10px;
+  margin-left: -30px;
+  padding-left: 30px;
+  width: 100%;
+}
+
+.songs__icons-fixed .body__shuffle {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  font-size: 4rem;
 }

@@ -14,6 +14,8 @@ function Header() {
         console.log(user);
 
     }, [user])
+
+    
     return (
         <div className="header-container">
             <div className="header__left">
@@ -23,7 +25,7 @@ function Header() {
 
             <div className="header__right">
 
-                <Avatar src={user.images[0].url}/>
+                <Avatar src={user.images[0].url} />
                 <h4>{user.display_name}</h4>
             </div>
         </div>
