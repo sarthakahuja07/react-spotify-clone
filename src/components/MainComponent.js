@@ -9,6 +9,7 @@ import Spotify from './SpotifyComponent';
 
 function Main() {
     const token = useSelector((state) => state.token);
+    const user = useSelector((state) => state.user);
     const dispatch = useDispatch();
     const _spotifyApi = new SpotifyWebApi();
 
@@ -26,7 +27,6 @@ function Main() {
         //Saving user //
         _spotifyApi.getMe()
             .then(user => {
-                // console.log(user);
                 dispatch(set_user(JSON.stringify(user)))
             })
             .catch(err => console.log(err))
@@ -34,7 +34,7 @@ function Main() {
 
         // getting user playlists
 
-        _spotifyApi.getUserPlaylists("4d3s4xj2kfe0qzyz8qhepb0sb")
+        _spotifyApi.getUserPlaylists(user?.id)
             .then(playlists => {
                 dispatch(set_user_playlists(playlists.items))
             })
@@ -43,7 +43,7 @@ function Main() {
     }, [_spotifyApi, dispatch, token])
 
 
-  
+
 
     return (
         token ?
