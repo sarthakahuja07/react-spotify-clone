@@ -1,20 +1,18 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux';
-import { set_is_playing} from '../redux/Action_creator';
+import { set_curr_song, set_is_playing } from '../redux/Action_creator';
 
 function SongRow(props) {
     const dispatch = useDispatch();
 
     function playSong() {
+        dispatch(set_curr_song(props.item.track))
+        dispatch(set_is_playing(true))
+
         props.spotifyAPI
             .play({
                 uris: [`spotify:track:${props.item.track.id}`],
             })
-            .then((res) => {
-                props.spotifyAPI.getMyCurrentPlayingTrack().then((r) => {
-                   dispatch(set_is_playing(true))
-                });
-            });
     }
 
     return (

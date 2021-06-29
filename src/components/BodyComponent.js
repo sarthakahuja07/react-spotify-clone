@@ -34,6 +34,7 @@ function Body(props) {
         return () => {
             setisLoading(true);
         }
+
     }, [data.vibrant, playlistID]);
 
     useEffect(() => {
@@ -60,20 +61,21 @@ function Body(props) {
     useEffect(() => {
         props.spotifyAPI.getMyCurrentPlayingTrack().then((r) => {
             dispatch(set_curr_song(r.item));
-            dispatch(set_is_playing(true))
         })
-    }, [curr_song]);
+
+    }, []);
 
     function playPlaylist() {
         props.spotifyAPI
             .play({
                 context_uri: `spotify:playlist:${curr_playlist.id}`,
-            }).then((res) => {
-                props.spotifyAPI.getMyCurrentPlayingTrack().then((r) => {
-                    dispatch(set_curr_song(r.item));
-                    dispatch(set_is_playing(true))
-                })
             })
+        dispatch(set_is_playing(true))
+        setTimeout(() => {
+            props.spotifyAPI.getMyCurrentPlayingTrack().then((r) => {
+                dispatch(set_curr_song(r.item));
+            })
+        }, 1000);
     }
 
     return (

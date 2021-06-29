@@ -1,48 +1,82 @@
 import React from 'react'
 import '../css/footerComponent.css'
 import PlayCircleFilledIcon from "@material-ui/icons/PlayCircleFilled";
+import PauseCircleFilledIcon from '@material-ui/icons/PauseCircleFilled';
 import SkipPreviousIcon from "@material-ui/icons/SkipPrevious";
 import SkipNextIcon from "@material-ui/icons/SkipNext";
 import ShuffleIcon from "@material-ui/icons/Shuffle";
 import RepeatIcon from "@material-ui/icons/Repeat";
 import VolumeDownIcon from "@material-ui/icons/VolumeDown";
 import PlaylistPlayIcon from "@material-ui/icons/PlaylistPlay";
-import {  Slider } from "@material-ui/core";
+import { Slider } from "@material-ui/core";
+import { set_is_playing, set_curr_song } from '../redux/Action_creator';
 import { useSelector, useDispatch } from 'react-redux';
 
-function Footer() {
+function Footer(props) {
+
+    const is_playing = useSelector(state => state.is_playing)
     const curr_song = useSelector(state => state.curr_song)
+    const dispatch = useDispatch()
+
+    function handlePlayPause() {
+        if (is_playing) {
+            props.spotifyAPI.pause();
+            dispatch(set_is_playing(false))
+        } else {
+            props.spotifyAPI.play();
+            dispatch(set_is_playing(true))
+        }
+    };
+
+    const skipNext = () => {
+        props.spotifyAPI.skipToNext((err, res) => {
+            dispatch(set_is_playing(true))
+            setTimeout(() => {
+                props.spotifyAPI.getMyCurrentPlayingTrack().then((r) => {
+                    dispatch(set_curr_song(r.item));
+                })
+            }, 1000);
+        })
+
+    };
+
+    const skipPreveious = () => {
+        props.spotifyAPI.skipToNext((err, res) => {
+            dispatch(set_is_playing(true))
+            setTimeout(() => {
+                props.spotifyAPI.getMyCurrentPlayingTrack().then((r) => {
+                    dispatch(set_curr_song(r.item));
+                })
+            }, 1000);
+        })
+
+    };
 
     return (
         <div className="footer-container">
-            {/* "https://i.scdn.co/image/ab67616d00004851268e04235dd657681fadf9aa" */}
             <div className="footer__left">
                 <img src={curr_song?.album.images[0].url || "https://i.scdn.co/image/ab67616d00004851268e04235dd657681fadf9aa"} className="footer__left__img" alt="" />
                 <div className="footer__left__info">
                     <h4>{curr_song?.name}</h4>
-                    <p>{curr_song?.artists.map(artist=>artist.name).join(", ")}</p>
+                    <p>{curr_song?.artists.map(artist => artist.name).join(", ")}</p>
                 </div>
             </div>
             <div className="footer__center">
                 <ShuffleIcon className="footer__green footer__icon" />
-                <SkipPreviousIcon className="footer__icon" />
-                <PlayCircleFilledIcon fontSize="large" className="footer__icon" />
-                <SkipNextIcon className="footer__icon" />
+                <SkipPreviousIcon className="footer__icon" onClick={skipPreveious} />
+                {
+                    is_playing ?
+                        <PauseCircleFilledIcon fontSize="large" className="footer__icon" onClick={handlePlayPause} />
+                        :
+                        <PlayCircleFilledIcon fontSize="large" className="footer__icon" onClick={handlePlayPause} />
+
+                }
+                <SkipNextIcon className="footer__icon" onClick={skipNext} />
                 <RepeatIcon className="footer__green footer__icon" />
 
             </div>
             <div className="footer__right">
-                {/* <Grid container spacing={1}>
-                    <Grid item>
-                        <PlaylistPlayIcon className="footer__icon"/>
-                    </Grid>
-                    <Grid item>
-                        <VolumeDownIcon className="footer__icon" />
-                    </Grid>
-                    <Grid item xs>
-                        <Slider aria-labelledby="continuous-slider" />
-                    </Grid>
-                </Grid> */}
+
                 <PlaylistPlayIcon className="footer__icon" />
                 <VolumeDownIcon className="footer__icon" />
                 <Slider aria-labelledby="continuous-slider" />

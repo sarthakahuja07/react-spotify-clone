@@ -27,7 +27,7 @@ function Spotify(props) {
 					<Redirect to='/home' ></Redirect>
 				</Switch>
 			</div>
-			<Footer />
+			<Footer spotifyAPI={props.spotifyAPI} />
 		</div>
 	)
 }

@@ -10,9 +10,8 @@ function Home(props) {
     useEffect(() => {
         props.spotifyAPI.getMyCurrentPlayingTrack().then((r) => {
             dispatch(set_curr_song(r.item));
-            dispatch(set_is_playing(true))
         })
-    }, [curr_song]);
+    }, []);
     return (
 
         <div className="body-container home">
