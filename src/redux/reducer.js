@@ -3,7 +3,8 @@ const initialState = {
     token: null,
     user: null,
     playlists: [],
-    curr_playlist: null
+    curr_playlist: null,
+    curr_song:null
 }
 
 export const reducer = (state = initialState, action) => {
@@ -34,6 +35,13 @@ export const reducer = (state = initialState, action) => {
                 return {
                     ...state,
                     curr_playlist: action.payload.curr_playlist
+                }
+            }
+            case ActionTypes.SET_CURR_SONG:
+            {
+                return {
+                    ...state,
+                    curr_song: action.payload.curr_song
                 }
             }
         default:

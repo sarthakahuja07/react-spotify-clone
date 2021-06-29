@@ -15,14 +15,13 @@ function Main() {
     useEffect(() => {
         const hash = getTokenFromResponse();
         let _token = hash.access_token;
-
         if (token == null) {
             dispatch(set_token(_token))
         }
 
         _spotifyApi.setAccessToken(token);
         console.log(_spotifyApi);
-        window.location.hash = "";
+        
 
         //Saving user //
         _spotifyApi.getMe()

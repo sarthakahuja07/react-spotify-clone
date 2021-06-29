@@ -35,3 +35,11 @@ export const set_curr_playlist = (_playlist) => {
         }
     }
 }
+export const set_curr_song = (_song) => {
+    return {
+        type: ActionTypes.SET_CURR_SONG,
+        payload: {
+            curr_song: _song
+        }
+    }
+}

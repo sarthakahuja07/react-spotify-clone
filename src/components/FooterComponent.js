@@ -8,14 +8,19 @@ import RepeatIcon from "@material-ui/icons/Repeat";
 import VolumeDownIcon from "@material-ui/icons/VolumeDown";
 import PlaylistPlayIcon from "@material-ui/icons/PlaylistPlay";
 import {  Slider } from "@material-ui/core";
+import { useSelector, useDispatch } from 'react-redux';
+
 function Footer() {
+    const curr_song = useSelector(state => state.curr_song)
+
     return (
         <div className="footer-container">
+            {/* "https://i.scdn.co/image/ab67616d00004851268e04235dd657681fadf9aa" */}
             <div className="footer__left">
-                <img src="https://i.scdn.co/image/ab67616d00004851268e04235dd657681fadf9aa" className="footer__left__img" alt="" />
+                <img src={curr_song?.album.images[0].url || "https://i.scdn.co/image/ab67616d00004851268e04235dd657681fadf9aa"} className="footer__left__img" alt="" />
                 <div className="footer__left__info">
-                    <h4>Living With No One</h4>
-                    <p>Phil Good</p>
+                    <h4>{curr_song?.name}</h4>
+                    <p>{curr_song?.artists.map(artist=>artist.name).join(", ")}</p>
                 </div>
             </div>
             <div className="footer__center">
