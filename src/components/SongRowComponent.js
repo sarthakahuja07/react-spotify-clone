@@ -1,5 +1,5 @@
 import React from 'react'
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { set_curr_song, set_is_playing } from '../redux/Action_creator';
 
 function SongRow(props) {

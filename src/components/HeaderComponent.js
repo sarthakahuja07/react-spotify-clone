@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import '../css/headerComponent.css'
 import { Avatar } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";

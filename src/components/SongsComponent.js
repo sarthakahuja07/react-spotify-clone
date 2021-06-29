@@ -1,7 +1,7 @@
 import React from 'react'
 import '../css/songsComponent.css'
 import SongRow from './SongRowComponent';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector} from 'react-redux';
 
 
 function Songs(props) {
