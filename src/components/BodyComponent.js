@@ -28,15 +28,13 @@ function Body(props) {
 
     useEffect(() => {
         var link = curr_playlist?.images[0].url;
-        if (link) {
+        if (link && isLoading) {
             var img = link;
             var r = document.querySelector(':root');
             analyze(img)
                 .then(result => {
                     r.style.setProperty('--bgcolor', result[0].color)
-                    setTimeout(() => {
                         setisLoading(false)
-                    }, 10);
                 })
         }
 
@@ -49,9 +47,7 @@ function Body(props) {
 
 
     useEffect(() => {
-        if(!isLoading){
-            
-            console.log("🛐 ")
+        if (!isLoading) {
             var body = document.querySelector(".body-container");
             var songs_icons = document.querySelector(".songs__icons");
             if (songs_icons) {
@@ -64,7 +60,7 @@ function Body(props) {
                         songs_icons.classList.remove("songs__icons-fixed");
                     }
                 })
-    
+
             }
         }
 
@@ -78,32 +74,32 @@ function Body(props) {
                 <Loading />
             </div>
             :
-        <div className="body-container">
-            <div className="body__header">
-                <Header />
-                <div className="body__info">
-                    <img className="body__info__img" src={curr_playlist?.images[0].url} alt="" />
-                    <div className="body__info__text">
-                        <strong>Playlist</strong>
-                        <h2>{curr_playlist?.name}</h2>
-                        <p>{curr_playlist?.description}</p>
-                        <div className="playlist__info">
-                            <a href="" className="">{curr_playlist?.owner.display_name}</a>
-                            <span>93 songs</span>
+            <div className="body-container">
+                <div className="body__header">
+                    <Header />
+                    <div className="body__info">
+                        <img className="body__info__img" src={curr_playlist?.images[0].url} alt="" />
+                        <div className="body__info__text">
+                            <strong>Playlist</strong>
+                            <h2>{curr_playlist?.name}</h2>
+                            <p>{curr_playlist?.description}</p>
+                            <div className="playlist__info">
+                                <a href="" className="">{curr_playlist?.owner.display_name}</a>
+                                <span>93 songs</span>
+                            </div>
                         </div>
                     </div>
+                    <div className="songs__icons">
+                        <PlayCircleFilledIcon fontSize="large" color='error' className="body__shuffle" />
+                        <FavoriteIcon fontSize="large" />
+                        <MoreHorizIcon style={{ color: 'white' }} />
+                    </div>
                 </div>
-                <div className="songs__icons">
-                    <PlayCircleFilledIcon fontSize="large" color='error' className="body__shuffle" />
-                    <FavoriteIcon fontSize="large" />
-                    <MoreHorizIcon style={{ color: 'white' }} />
-                </div>
-            </div>
-            <div className="body__songs">
-                <Songs />
+                <div className="body__songs">
+                    <Songs />
 
+                </div>
             </div>
-        </div>
 
 
     )
