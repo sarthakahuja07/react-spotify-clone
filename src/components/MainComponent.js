@@ -1,8 +1,8 @@
-import React, { useEffect,useMemo } from 'react'
+import React, { useEffect, useMemo } from 'react'
 import Login from './LoginComponent';
 import { useSelector, useDispatch } from 'react-redux';
 import { getTokenFromResponse } from '../spotify';
-import { set_token, set_user, set_user_playlists } from '../redux/Action_creator';
+import { set_token, set_user, set_user_playlists, set_curr_song, set_is_playing } from '../redux/Action_creator';
 import SpotifyWebApi from 'spotify-web-api-js';
 import Spotify from './SpotifyComponent';
 
@@ -21,7 +21,7 @@ function Main() {
 
         _spotifyApi.setAccessToken(token);
         console.log(_spotifyApi);
-        
+
 
         //Saving user //
         _spotifyApi.getMe()
@@ -40,11 +40,10 @@ function Main() {
             })
             .catch(err => console.log(err))
 
-
     }, [_spotifyApi, dispatch, token])
 
-    
 
+  
 
     return (
         token ?

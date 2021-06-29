@@ -4,7 +4,8 @@ const initialState = {
     user: null,
     playlists: [],
     curr_playlist: null,
-    curr_song:null
+    curr_song:null,
+    is_playing:false
 }
 
 export const reducer = (state = initialState, action) => {
@@ -42,6 +43,13 @@ export const reducer = (state = initialState, action) => {
                 return {
                     ...state,
                     curr_song: action.payload.curr_song
+                }
+            }
+            case ActionTypes.SET_IS_PLAYING:
+            {
+                return {
+                    ...state,
+                    is_playing: action.payload.is_playing
                 }
             }
         default:

@@ -43,3 +43,11 @@ export const set_curr_song = (_song) => {
         }
     }
 }
+export const set_is_playing = (_is_playing) => {
+    return {
+        type: ActionTypes.SET_IS_PLAYING,
+        payload: {
+            is_playing: _is_playing
+        }
+    }
+}

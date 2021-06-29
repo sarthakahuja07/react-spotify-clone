@@ -8,11 +8,11 @@ import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 import Loading from './LoadingComponent';
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { set_curr_playlist } from '../redux/Action_creator';
+import { set_curr_playlist, set_is_playing, set_curr_song } from '../redux/Action_creator';
 import { usePalette } from 'react-palette'
 
 function Body(props) {
-
+    const curr_song = useSelector((state) => state.curr_song);
     let { playlistID } = useParams();
     const curr_playlist = useSelector(state => state.curr_playlist)
     const { data, loading, error } = usePalette(curr_playlist?.images[0].url)
@@ -55,6 +55,27 @@ function Body(props) {
         }
     }, [isLoading]);
 
+
+
+    useEffect(() => {
+        props.spotifyAPI.getMyCurrentPlayingTrack().then((r) => {
+            dispatch(set_curr_song(r.item));
+            dispatch(set_is_playing(true))
+        })
+    }, [curr_song]);
+
+    function playPlaylist() {
+        props.spotifyAPI
+            .play({
+                context_uri: `spotify:playlist:${curr_playlist.id}`,
+            }).then((res) => {
+                props.spotifyAPI.getMyCurrentPlayingTrack().then((r) => {
+                    dispatch(set_curr_song(r.item));
+                    dispatch(set_is_playing(true))
+                })
+            })
+    }
+
     return (
 
 
@@ -79,14 +100,14 @@ function Body(props) {
                         </div>
                     </div>
                     <div className="songs__icons">
-                        <PlayCircleFilledIcon fontSize="large" color='error' className="body__shuffle" />
+                        <PlayCircleFilledIcon fontSize="large" color='error' className="body__shuffle" onClick={playPlaylist} />
                         <FavoriteIcon fontSize="large" />
                         <MoreHorizIcon style={{ color: 'white' }} />
                     </div>
                 </div>
 
                 <div className="body__songs">
-                    <Songs />
+                    <Songs spotifyAPI={props.spotifyAPI} />
                 </div>
             </div>
 

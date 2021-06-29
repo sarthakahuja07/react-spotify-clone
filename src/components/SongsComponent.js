@@ -4,7 +4,7 @@ import SongRow from './SongRowComponent';
 import { useSelector, useDispatch } from 'react-redux';
 
 
-function Songs() {
+function Songs(props) {
     const curr_playlist = useSelector(state => state.curr_playlist)
 
     return (
@@ -13,7 +13,7 @@ function Songs() {
                 <hr></hr>
             </div>
             <div className="songs__list">
-                {curr_playlist?.tracks.items.map(item=><SongRow item={item}/>)}
+                {curr_playlist?.tracks.items.map(item=><SongRow  spotifyAPI={props.spotifyAPI} item={item}/>)}
             </div>
 
         </div>

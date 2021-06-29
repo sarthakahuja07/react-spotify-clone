@@ -11,13 +11,19 @@ function Spotify(props) {
 			<Body spotifyAPI={props.spotifyAPI}/>
 		)
 	}
+	function home_comp(){
+		return(
+			<Home spotifyAPI={props.spotifyAPI}/>
+		)
+	}
+
 	return (
 		<div className="spotify-container">
 			<div className="spotify__body">
 				<Sidebar />
 				<Switch>
 					<Route path="/playlist/:playlistID" component={()=>body_comp()}></Route>
-					<Route path='/home' component={Home}></Route>
+					<Route path='/home' component={()=>home_comp()}></Route>
 					<Redirect to='/home' ></Redirect>
 				</Switch>
 			</div>
