@@ -1,14 +1,13 @@
 import React from 'react'
 
-function SongRow() {
+function SongRow(props) {
     return (
-        <div className="songRow-container">
-            <img className="songRow__album" src="https://i.scdn.co/image/ab67616d00004851f56eccbf4222bfefaffc9b30" alt="" />
+        <div className="songRow-container" key={props.item.track.id}>
+            <img className="songRow__album" src={props.item.track.album.images[0].url} alt="" />
             <div className="songRow__info">
-                <h1>Moon Man (feat. Strick & Kid Cudi)</h1>
+                <h1>{props.item.track.name}</h1>
                 <p>
-                    Young Stoner Life, Young Thug -{" "}
-                    Slime Language 2
+                {props.item.track.artists.map(artist=>artist.name).join(", ")}
                 </p>
             </div>
         </div>

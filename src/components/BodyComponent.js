@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import '../css/bodyComponent.css';
 import Header from './HeaderComponent';
 import Songs from './SongsComponent';
-import analyze from 'rgbaster'
 import PlayCircleFilledIcon from "@material-ui/icons/PlayCircleFilled";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
@@ -10,11 +9,13 @@ import Loading from './LoadingComponent';
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { set_curr_playlist } from '../redux/Action_creator';
-
+import { usePalette } from 'react-palette'
 
 function Body(props) {
+
     let { playlistID } = useParams();
     const curr_playlist = useSelector(state => state.curr_playlist)
+    const { data, loading, error } = usePalette(curr_playlist?.images[0].url)
     const [isLoading, setisLoading] = useState(true)
     const dispatch = useDispatch();
 
@@ -24,27 +25,16 @@ function Body(props) {
                 dispatch(set_curr_playlist(playlist));
             })
             .catch(err => console.log(err))
-    }, [playlistID]);
-
-    useEffect(() => {
-        var link = curr_playlist?.images[0].url;
-        if (link && isLoading) {
-            var img = link;
-            var r = document.querySelector(':root');
-            analyze(img)
-                .then(result => {
-                    r.style.setProperty('--bgcolor', result[0].color)
-                        setisLoading(false)
-                })
-        }
+        var r = document.querySelector(':root');
+        r.style.setProperty('--bgcolor', data.vibrant);
+        setTimeout(() => {
+            setisLoading(false)
+        }, 500);
 
         return () => {
             setisLoading(true);
         }
-
-    }, [curr_playlist, playlistID])
-
-
+    }, [data.vibrant, playlistID]);
 
     useEffect(() => {
         if (!isLoading) {
@@ -63,11 +53,10 @@ function Body(props) {
 
             }
         }
-
-
     }, [isLoading]);
 
     return (
+
 
         isLoading ?
             <div className="body-container">
@@ -85,7 +74,7 @@ function Body(props) {
                             <p>{curr_playlist?.description}</p>
                             <div className="playlist__info">
                                 <a href="" className="">{curr_playlist?.owner.display_name}</a>
-                                <span>93 songs</span>
+                                <span>{curr_playlist?.tracks.total} songs</span>
                             </div>
                         </div>
                     </div>
@@ -95,9 +84,9 @@ function Body(props) {
                         <MoreHorizIcon style={{ color: 'white' }} />
                     </div>
                 </div>
+
                 <div className="body__songs">
                     <Songs />
-
                 </div>
             </div>
 
