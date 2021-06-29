@@ -2,15 +2,24 @@ import React from 'react'
 import Body from './BodyComponent';
 import Footer from './FooterComponent';
 import Sidebar from './SidebarComponent';
-
+import { Switch, Route, Redirect } from 'react-router-dom';
+import Home from './HomeComponent';
 import '../css/spotifyComponent.css'
-function Spotify() {
-
+function Spotify(props) {
+	function body_comp(){
+		return(
+			<Body spotifyAPI={props.spotifyAPI}/>
+		)
+	}
 	return (
 		<div className="spotify-container">
 			<div className="spotify__body">
 				<Sidebar />
-				<Body />
+				<Switch>
+					<Route path="/playlist/:playlistID" component={()=>body_comp()}></Route>
+					<Route path='/home' component={Home}></Route>
+					<Redirect to='/home' ></Redirect>
+				</Switch>
 			</div>
 			<Footer />
 		</div>
