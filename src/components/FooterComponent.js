@@ -52,6 +52,24 @@ function Footer(props) {
 
     };
 
+    const shuffle = () => {
+        var button = document.querySelector(".footer__icon.shuffle")
+        button.classList.contains("footer__green") ?
+            props.spotifyAPI.setShuffle(false)
+                .then((res) => {
+                    console.log("🔥 ", false);
+                    button.classList.remove("footer__green")
+                })
+            :
+            props.spotifyAPI.setShuffle(true)
+                .then((res) => {
+                    console.log("🔥 ", true);
+                    button.classList.add("footer__green")
+                })
+
+    };
+
+
     return (
         <div className="footer-container">
             <div className="footer__left">
@@ -62,7 +80,7 @@ function Footer(props) {
                 </div>
             </div>
             <div className="footer__center">
-                <ShuffleIcon className="footer__green footer__icon" />
+                <ShuffleIcon className=" footer__icon shuffle" onClick={shuffle} />
                 <SkipPreviousIcon className="footer__icon" onClick={skipPreveious} />
                 {
                     is_playing ?
