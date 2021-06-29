@@ -3,13 +3,13 @@ import Header from './HeaderComponent';
 
 function Home() {
     return (
-
-        <div className="body-container home">
-            <div className="body__header home">
-                <Header />
+    
+            <div className="body-container home">
+                <div className="body__header home">
+                    <Header />
+                </div>
             </div>
-        </div>
-
+        
     )
 }
 

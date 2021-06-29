@@ -14,7 +14,6 @@ import { set_curr_playlist } from '../redux/Action_creator';
 
 function Body(props) {
     let { playlistID } = useParams();
-    console.log("⏰ ", playlistID)
     const curr_playlist = useSelector(state => state.curr_playlist)
     const [isLoading, setisLoading] = useState(true)
     const dispatch = useDispatch();
@@ -25,7 +24,7 @@ function Body(props) {
                 dispatch(set_curr_playlist(playlist));
             })
             .catch(err => console.log(err))
-    }, [dispatch, playlistID, props.spotifyAPI]);
+    }, [playlistID]);
 
     useEffect(() => {
         var link = curr_playlist?.images[0].url;
@@ -35,39 +34,42 @@ function Body(props) {
             analyze(img)
                 .then(result => {
                     r.style.setProperty('--bgcolor', result[0].color)
-                    setisLoading(false)
+                    setTimeout(() => {
+                        setisLoading(false)
+                    }, 10);
                 })
-        } else {
-            setisLoading(false);
         }
 
         return () => {
             setisLoading(true);
         }
 
-    }, [curr_playlist])
-
-
+    }, [curr_playlist, playlistID])
 
 
 
     useEffect(() => {
-        console.log("💩 ")
-        var body = document.querySelector(".body-container");
-        var songs_icons = document.querySelector(".songs__icons");
-        if (songs_icons) {
-            var top = songs_icons.offsetTop;
-            body.addEventListener("scroll", () => {
-                if (body.scrollTop >= top) {
-                    songs_icons.classList.add("songs__icons-fixed");
-                }
-                if (body.scrollTop <= (top)) {
-                    songs_icons.classList.remove("songs__icons-fixed");
-                }
-            })
+        if(!isLoading){
+            
+            console.log("🛐 ")
+            var body = document.querySelector(".body-container");
+            var songs_icons = document.querySelector(".songs__icons");
+            if (songs_icons) {
+                var top = songs_icons.offsetTop;
+                body.addEventListener("scroll", () => {
+                    if (body.scrollTop >= top) {
+                        songs_icons.classList.add("songs__icons-fixed");
+                    }
+                    if (body.scrollTop <= (top)) {
+                        songs_icons.classList.remove("songs__icons-fixed");
+                    }
+                })
+    
+            }
         }
 
-    }, [curr_playlist])
+
+    }, [isLoading]);
 
     return (
 
