@@ -3,17 +3,16 @@ import Body from './BodyComponent';
 import Footer from './FooterComponent';
 import Sidebar from './SidebarComponent';
 import { Switch, Route, Redirect } from 'react-router-dom';
-import Home from './HomeComponent';
 import '../css/spotifyComponent.css'
 function Spotify(props) {
 	function body_comp(){
 		return(
-			<Body spotifyAPI={props.spotifyAPI}/>
+			<Body spotifyAPI={props.spotifyAPI} isHome={false}/>
 		)
 	}
 	function home_comp(){
 		return(
-			<Home spotifyAPI={props.spotifyAPI}/>
+			<Body spotifyAPI={props.spotifyAPI} isHome={true}/>
 		)
 	}
 

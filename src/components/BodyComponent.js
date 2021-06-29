@@ -7,12 +7,14 @@ import FavoriteIcon from "@material-ui/icons/Favorite";
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 import Loading from './LoadingComponent';
 import { useParams } from 'react-router-dom';
+
 import { useSelector, useDispatch } from 'react-redux';
 import { set_curr_playlist, set_is_playing, set_curr_song } from '../redux/Action_creator';
 import { usePalette } from 'react-palette'
 
 function Body(props) {
-    const curr_song = useSelector((state) => state.curr_song);
+
+
     let { playlistID } = useParams();
     const curr_playlist = useSelector(state => state.curr_playlist)
     const { data, loading, error } = usePalette(curr_playlist?.images[0].url)
@@ -20,17 +22,33 @@ function Body(props) {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        props.spotifyAPI.getPlaylist(playlistID)
-            .then(playlist => {
-                dispatch(set_curr_playlist(playlist));
-            })
-            .catch(err => console.log(err))
-        var r = document.querySelector(':root');
-        r.style.setProperty('--bgcolor', data.vibrant);
-        setTimeout(() => {
-            setisLoading(false)
-        }, 500);
-
+        if (props.isHome) {
+            props.spotifyAPI.getFeaturedPlaylists()
+                .then(res => {
+                    props.spotifyAPI.getPlaylist(res.playlists.items[0].id)
+                        .then(playlist => {
+                            dispatch(set_curr_playlist(playlist));
+                        })
+                        .catch(err => console.log(err))
+                    var r = document.querySelector(':root');
+                    r.style.setProperty('--bgcolor', data.vibrant);
+                    setTimeout(() => {
+                        setisLoading(false)
+                    }, 500);
+                })
+        }
+        else {
+            props.spotifyAPI.getPlaylist(playlistID)
+                .then(playlist => {
+                    dispatch(set_curr_playlist(playlist));
+                })
+                .catch(err => console.log(err))
+            var r = document.querySelector(':root');
+            r.style.setProperty('--bgcolor', data.vibrant);
+            setTimeout(() => {
+                setisLoading(false)
+            }, 500);
+        }
         return () => {
             setisLoading(true);
         }
@@ -75,7 +93,7 @@ function Body(props) {
             props.spotifyAPI.getMyCurrentPlayingTrack().then((r) => {
                 dispatch(set_curr_song(r.item));
             })
-        }, 1000);
+        }, 1500);
     }
 
     return (
