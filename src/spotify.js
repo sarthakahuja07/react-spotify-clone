@@ -1,6 +1,6 @@
 let client_id = "500d6bc2d0d94929a90b69bdf13cdf18";
 let response_type = "token"
-let redirect_uri = "http://localhost:3000"
+let redirect_uri = "https://spotify-clone-11dd0.web.app"
 let show_dialog = "true"
 let authEndPoint = "https://accounts.spotify.com/authorize"
 let scopes = ["user-read-currently-playing",
