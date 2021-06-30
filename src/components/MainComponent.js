@@ -27,7 +27,9 @@ function Main() {
         //Saving user //
         _spotifyApi.getMe()
             .then(user => {
-                dispatch(set_user(JSON.stringify(user)))
+                if(user){
+                    dispatch(set_user(JSON.stringify(user)))
+                }
             })
             .catch(err => console.log(err))
 

@@ -34,6 +34,20 @@
   margin: 10px auto;
 }
 
-.sidebar__list{
+.sidebar__list {
   overflow-y: overlay;
+}
+
+.sidebar__fixed .logout__button {
+  width: 100%;
+  padding: 10px;
+  background: #1db954;
+  color: white;
+  border-radius: 99px;
+  font-weight: 800;
+  margin-top: 20px;
+}
+.sidebar__fixed .logout__button.MuiButton-contained:hover {
+  background: #1db954;
+  opacity: 0.9;
 }
