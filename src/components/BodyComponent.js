@@ -14,7 +14,6 @@ import { usePalette } from 'react-palette'
 
 function Body(props) {
 
-
     let { playlistID } = useParams();
     const curr_playlist = useSelector(state => state.curr_playlist)
     const { data, loading, error } = usePalette(curr_playlist?.images[0].url)
@@ -22,6 +21,7 @@ function Body(props) {
     const dispatch = useDispatch();
 
     useEffect(() => {
+        var r = document.querySelector(':root');
         if (props.isHome) {
             props.spotifyAPI.getFeaturedPlaylists()
                 .then(res => {
@@ -30,7 +30,6 @@ function Body(props) {
                             dispatch(set_curr_playlist(playlist));
                         })
                         .catch(err => console.log(err))
-                    var r = document.querySelector(':root');
                     r.style.setProperty('--bgcolor', data.vibrant);
                     setTimeout(() => {
                         setisLoading(false)
@@ -39,15 +38,18 @@ function Body(props) {
         }
         else {
             props.spotifyAPI.getPlaylist(playlistID)
-                .then(playlist => {
-                    dispatch(set_curr_playlist(playlist));
-                })
+                .then(
+                    playlist => {
+                        dispatch(set_curr_playlist(playlist));
+                    }
+                )
+                .then(res => {
+                    r.style.setProperty('--bgcolor', data.vibrant)
+                    setisLoading(false);
+                }
+
+                )
                 .catch(err => console.log(err))
-            var r = document.querySelector(':root');
-            r.style.setProperty('--bgcolor', data.vibrant);
-            setTimeout(() => {
-                setisLoading(false)
-            }, 500);
         }
         return () => {
             setisLoading(true);
