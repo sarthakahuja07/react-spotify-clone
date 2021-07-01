@@ -5,6 +5,8 @@ import { getTokenFromResponse } from '../spotify';
 import { set_token, set_user, set_user_playlists } from '../redux/Action_creator';
 import SpotifyWebApi from 'spotify-web-api-js';
 import Spotify from './SpotifyComponent';
+import { BrowserRouter } from 'react-router-dom';
+
 
 
 function Main() {
@@ -27,7 +29,7 @@ function Main() {
         //Saving user //
         _spotifyApi.getMe()
             .then(user => {
-                if(user){
+                if (user) {
                     dispatch(set_user(JSON.stringify(user)))
                 }
             })
@@ -48,12 +50,19 @@ function Main() {
 
 
     return (
-        token ?
-            <Spotify spotifyAPI={_spotifyApi} />
-            :
-            <div>
-                <Login />
-            </div>
+        <BrowserRouter>
+
+            {token ?
+
+                <Spotify spotifyAPI={_spotifyApi} />
+                :
+                <div>
+                    <Login />
+                </div>
+            }
+
+        </BrowserRouter>
+
     )
 }
 export default Main

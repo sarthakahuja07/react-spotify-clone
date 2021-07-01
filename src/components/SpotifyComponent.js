@@ -21,9 +21,9 @@ function Spotify(props) {
 			<div className="spotify__body">
 				<Sidebar />
 				<Switch>
-					<Route path="/playlist/:playlistID" component={()=>body_comp()}></Route>
-					<Route path='/home' component={()=>home_comp()}></Route>
-					<Redirect to='/home' ></Redirect>
+					<Route exact path="/playlist/:playlistID" component={()=>body_comp()}></Route>
+					<Route path='/playlist/:playlistID' component={()=>home_comp()}></Route>
+					<Redirect to='playlist/0' ></Redirect>
 				</Switch>
 			</div>
 			<Footer spotifyAPI={props.spotifyAPI} />

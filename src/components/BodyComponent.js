@@ -9,20 +9,23 @@ import Loading from './LoadingComponent';
 import { useParams } from 'react-router-dom';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { set_curr_playlist, set_is_playing, set_curr_song } from '../redux/Action_creator';
+import { set_curr_playlist, set_is_loading, set_is_playing, set_curr_song } from '../redux/Action_creator';
 import { usePalette } from 'react-palette'
 
 function Body(props) {
 
     let { playlistID } = useParams();
+    console.log("🔥 ",playlistID);
     const curr_playlist = useSelector(state => state.curr_playlist)
     const { data, loading, error } = usePalette(curr_playlist?.images[0].url)
-    const [isLoading, setisLoading] = useState(true)
+    const is_loading = useSelector(state => state.is_loading)
     const dispatch = useDispatch();
+    var r = document.querySelector(':root');
 
     useEffect(() => {
-        var r = document.querySelector(':root');
-        if (props.isHome) {
+        dispatch(set_is_loading(true));
+        
+        if (playlistID==0) {
             props.spotifyAPI.getFeaturedPlaylists()
                 .then(res => {
                     props.spotifyAPI.getPlaylist(res.playlists.items[0].id)
@@ -30,35 +33,27 @@ function Body(props) {
                             dispatch(set_curr_playlist(playlist));
                         })
                         .catch(err => console.log(err))
-                    r.style.setProperty('--bgcolor', data.vibrant);
-                    setTimeout(() => {
-                        setisLoading(false)
-                    }, 500);
                 })
-        }
-        else {
+        }else{
             props.spotifyAPI.getPlaylist(playlistID)
-                .then(
-                    playlist => {
-                        dispatch(set_curr_playlist(playlist));
-                    }
-                )
-                .then(res => {
-                    r.style.setProperty('--bgcolor', data.vibrant)
-                    setisLoading(false);
+            .then(
+                playlist => {
+                    dispatch(set_curr_playlist(playlist));
                 }
-
-                )
-                .catch(err => console.log(err))
+            )
+            .catch(err => console.log(err))
         }
-        return () => {
-            setisLoading(true);
-        }
-
-    }, [data.vibrant, playlistID]);
+        
+    }, [playlistID]);
 
     useEffect(() => {
-        if (!isLoading) {
+        r.style.setProperty('--bgcolor', data.vibrant)
+        dispatch(set_is_loading(false));
+    }, [data.vibrant])
+
+
+    useEffect(() => {
+        if (!is_loading) {
             var body = document.querySelector(".body-container");
             var songs_icons = document.querySelector(".songs__icons");
             if (songs_icons) {
@@ -71,18 +66,18 @@ function Body(props) {
                         songs_icons.classList.remove("songs__icons-fixed");
                     }
                 })
-
             }
         }
-    }, [isLoading]);
+
+    }, [is_loading]);
 
 
 
     useEffect(() => {
+
         props.spotifyAPI.getMyCurrentPlayingTrack().then((r) => {
             dispatch(set_curr_song(r.item));
         })
-
     }, []);
 
     function playPlaylist() {
@@ -99,9 +94,7 @@ function Body(props) {
     }
 
     return (
-
-
-        isLoading ?
+        is_loading ?
             <div className="body-container">
                 <Loading />
             </div>

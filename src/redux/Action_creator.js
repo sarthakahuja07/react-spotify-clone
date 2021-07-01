@@ -51,3 +51,11 @@ export const set_is_playing = (_is_playing) => {
         }
     }
 }
+export const set_is_loading = (_is_loading) => {
+    return {
+        type: ActionTypes.SET_IS_LOADING,
+        payload: {
+            is_loading: _is_loading
+        }
+    }
+}
